@@ -307,3 +307,9 @@ Note: if locate does not work, remember to enable the db running infodb as root
 1. Use the command-line recall feature to recall the cat command and change `/etc/passwd` to `/etc/group`.
 2. Recall the ls command, determine how to list files by time (using the man page), and add that option to the ls $HOME command line.
 3. Add format indicators to the date command to display the date output as month/day/year.
+
+Press up arrow until u see the `/etc/passwd` and edit to `/etc/group`
+
+Run `man ls` to see the different options. The option is `-t`. Use again up arrow until see the ls and edit to add the option. `ls -t $HOME`
+
+Again run `man date` to see the different options. Up arrow unti finde `date`. The way to format is: `date "+DATE: %m/%d/%Y"`
