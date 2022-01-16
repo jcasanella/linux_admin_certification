@@ -313,3 +313,32 @@ Press up arrow until u see the `/etc/passwd` and edit to `/etc/group`
 Run `man ls` to see the different options. The option is `-t`. Use again up arrow until see the ls and edit to add the option. `ls -t $HOME`
 
 Again run `man date` to see the different options. Up arrow unti finde `date`. The way to format is: `date "+DATE: %m/%d/%Y"`
+
+### 4. Use the `cat` command to list the contents of the `/etc/services` file and pipe those contents to the less command so that you can page through it.
+```
+cat /etc/services | less
+```
+
+### 5. Run the `date` command in such a way that the output from that command produces the current day, month, date, and year. Have that read into another command line, resulting in text that appears like the following (your date, of course, will be different): Today is Thursday, December 19, 2019.
+```
+Look for help in man and info cmd
+info date
+echo "Today is $(date +"%A, %B %d, %Y")"
+```
+
+### 6. Using variables, find out what your hostname, username, shell, and home directories are currently set to.
+```
+echo $HOSTNAME
+echo $USER
+echo $SHELL
+echo $HOME
+```
+
+### 7. Create an alias called mypass that displays the contents of the `/etc/passwd` file on your screen in such a way that it is available every time you log in or open a new shell from your user account.
+```
+alias mypass='cat /etc/passwd'
+
+Add into the .bashrc
+Remember to run source .bashrc
+```
+
