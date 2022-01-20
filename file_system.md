@@ -279,7 +279,59 @@ $ rm -rf /home/joe/hugedir/
 
 ### 2. Make the `$HOME/projects/houses/doors/` directory path. Create the following empty files within this directory path (try using absolute and relative paths from your home directory):
 ```
- $HOME/projects/houses/bungalow.txt
- $HOME/projects/houses/doors/bifold.txt
- $HOME/projects/outdoors/vegetation/landscape.txt
+$HOME/projects/houses/bungalow.txt
+$HOME/projects/houses/doors/bifold.txt
+$HOME/projects/outdoors/vegetation/landscape.txt
  ```
+
+```
+cd $HOME/project
+mkdir -p houses/doors
+cd houses/doors
+touch bifold.txt
+touch ../bungalow.txt
+cd ..
+mkdir -p outdoors/vegetation
+touch outdoors/vegetation/landscape.txt
+```
+
+### 3. Copy the files house1 and house5 to the `$HOME/projects/houses/` directory.
+
+```
+cp house[15] houses/.
+```
+
+### 4. Recursively copy the `/usr/share/doc/initscripts*` directory to the `$HOME/projects/` directory. Maintain the current date/time stamps and permissions.
+```
+cp -p -R /usr/share/doc/initscripts* $HOME/projects
+```
+
+### 5. Recursively list the contents of the $HOME/projects/ directory. Pipe the output to the less command so that you can page through the output.
+```
+ls -laR project | less
+```
+
+### 6. Remove the files `house6`, `house7`, and `house8` without being prompted.
+```
+rm -r house[6-8]
+```
+
+### 7. Move `house3` and `house4` to the `$HOME/projects/houses/doors` directory.
+```
+mv house[34] houses/doors/.
+```
+
+### 8. Remove the `$HOME/projects/houses/doors` directory and its contents.
+```
+rm -rf houses/doors
+```
+
+### 9. Change the permissions on the `$HOME/projects/house2` file so that it can be read by and written to by the user who owns the file, only read by the group, and have no permission for others.
+```
+chmod 640 house2
+```
+
+### 10. Recursively change permissions of the `$HOME/projects/` directory so that nobody has write permission to any files or directory beneath that point in the filesystem.
+```
+chmod -R a-w projects
+```
