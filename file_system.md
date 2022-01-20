@@ -266,3 +266,20 @@ $ rmdir /home/joe/nothing/
 $ rm -r /home/joe/bigdir/
 $ rm -rf /home/joe/hugedir/
 ```
+
+## Exercises
+
+### 1. Create a directory in your home directory called projects. In the projects directory, create nine empty files that are named house1, house2, house3, and so on up to house9. Assuming that there are lots of other files in that directory, come up with a single argument to ls that would list just those nine files.
+```
+# mkdir projects
+# cd projects
+# touch house{1..9}
+# ls -la house[1-9]
+```
+
+### 2. Make the `$HOME/projects/houses/doors/` directory path. Create the following empty files within this directory path (try using absolute and relative paths from your home directory):
+```
+ $HOME/projects/houses/bungalow.txt
+ $HOME/projects/houses/doors/bifold.txt
+ $HOME/projects/outdoors/vegetation/landscape.txt
+ ```
