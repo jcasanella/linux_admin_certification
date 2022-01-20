@@ -333,5 +333,5 @@ chmod 640 house2
 
 ### 10. Recursively change permissions of the `$HOME/projects/` directory so that nobody has write permission to any files or directory beneath that point in the filesystem.
 ```
-chmod -R a-w projects
+chmod -R a-w projects 
 ```
