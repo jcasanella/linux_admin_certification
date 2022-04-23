@@ -37,6 +37,42 @@ $ pwd
 ```
 The tilde (`~`) represents your home directory.
 
+* `ls` to list the files
+```
+$ ls -la                                                                                                                                                    
+total 48
+drwxrwxrwx 1 jcasanella jcasanella  4096 Apr 22 07:52 .
+drwxrwxrwx 1 jcasanella jcasanella  4096 Apr 22 07:51 ..
+drwxrwxrwx 1 jcasanella jcasanella  4096 Apr 23 00:55 .git
+-rwxrwxrwx 1 jcasanella jcasanella 14994 Apr 24 00:21 file_system.md
+drwxrwxrwx 1 jcasanella jcasanella  4096 Apr 23 22:19 img
+-rwxrwxrwx 1 jcasanella jcasanella  7598 Apr 23 00:35 using_man.md
+-rwxrwxrwx 1 jcasanella jcasanella 18403 Apr 22 07:51 using_shell.md
+-rwxrwxrwx 1 jcasanella jcasanella  3440 Apr 22 07:51 working_with_files.md
+
+Note: list all the files
+
+$ ls -ltr                                                                                                                                                   
+total 48
+-rwxrwxrwx 1 jcasanella jcasanella 18403 Apr 22 07:51 using_shell.md
+-rwxrwxrwx 1 jcasanella jcasanella  3440 Apr 22 07:51 working_with_files.md
+-rwxrwxrwx 1 jcasanella jcasanella  7598 Apr 23 00:35 using_man.md
+drwxrwxrwx 1 jcasanella jcasanella  4096 Apr 23 22:19 img
+-rwxrwxrwx 1 jcasanella jcasanella 14994 Apr 24 00:21 file_system.md
+
+Note: list the files sorted by the last modification
+
+$ ls --full-time                                                                                                                                           
+total 48
+-rwxrwxrwx 1 jcasanella jcasanella 14994 2022-04-24 00:21:54.495101300 +0100 file_system.md
+drwxrwxrwx 1 jcasanella jcasanella  4096 2022-04-23 22:19:55.024783600 +0100 img
+-rwxrwxrwx 1 jcasanella jcasanella  7598 2022-04-23 00:35:41.490395700 +0100 using_man.md
+-rwxrwxrwx 1 jcasanella jcasanella 18403 2022-04-22 07:51:09.166972600 +0100 using_shell.md
+-rwxrwxrwx 1 jcasanella jcasanella  3440 2022-04-22 07:51:09.174974900 +0100 working_with_files.md
+
+Note: Print the full timestamp of the last modification of the file
+```
+
 ## Metacharacters and operators
 
 ### File Metacharacters
@@ -257,6 +293,8 @@ $ cp -r /usr/share/doc/bash-completion* /tmp/a/
 $ cp -ra /usr/share/doc/bash-completion* /tmp/b/
 ```
 
+To copy a file, preserving attributes use the paramenter `-p` (means preserve)
+
 The lastest command with the `a` it keeps the source timestamp when executes the copy. Otherwise will use the current timestamp
 
 * Drop file or folder. We can use the commands `rm` and `rmdir`
@@ -266,6 +304,36 @@ $ rmdir /home/joe/nothing/
 $ rm -r /home/joe/bigdir/
 $ rm -rf /home/joe/hugedir/
 ```
+
+## Links
+
+### Hard Links
+
+One important point of a file is the inodes, that helps to find out all the blocks associated to a file. With the command: `stats filename` we can see all the info associated to this file.
+
+```
+stat using_man.md                                                                                                                                            ✔  5348  22:10:42
+  File: using_man.md
+  Size: 7598            Blocks: 16         IO Block: 4096   regular file
+Device: fh/15d  Inode: 3096224744276471  Links: 1
+Access: (0777/-rwxrwxrwx)  Uid: ( 1000/jcasanella)   Gid: ( 1000/jcasanella)
+Access: 2022-04-23 00:53:56.414387600 +0100
+Modify: 2022-04-23 00:35:41.490395700 +0100
+Change: 2022-04-23 00:35:41.490395700 +0100
+ Birth: -
+```
+
+In order to share files in the system, we can create hard links. The syntax is `ln target link_name` So now the same file can be accessed from different locations.
+
+![Hard Link](img/hard_link.PNG)
+
+in the image we can appreciate, after create a hard link, the number of links have been increased to 2. If one of the users drop the file, the other still can see the data, the explanation is because the number of links is 1, if the 2nd user drops the file, then it's not present anymore at disk. Every time we create a hard link, it increases the links associated to the file and the file will be deleted once the number of links is 0. The hard links can be applied only to files.
+
+### Soft Links
+
+Basically is a file thant points to a specific location, where the real file exists. `ln -s target_file link_name`
+If you drop the symbolic link, the file where the symlink points still exists. 
+Can be created against files and directories. To see where it points, can use the command `readlink link_name`
 
 ## Exercises
 
